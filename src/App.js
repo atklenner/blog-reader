@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import { DATABASE_URL } from "./urls.js";
+import BlogPost from "./components/BlogPost";
+import { nanoid } from "nanoid";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [blogPosts, setBlogPosts] = useState([{}]);
+
+  useEffect(() => {
+    fetch(DATABASE_URL)
+      .then((response) => response.json())
+      .then((data) =>
+        setBlogPosts(() => {
+          return data;
+        })
+      );
+  }, []);
+
+  function displayBlogs(blogArray) {
+    if (blogArray) {
+      return blogArray.map((blog) => {
+        return <BlogPost blog={blog} key={nanoid()} />;
+      });
+    } else return "";
+  }
+
+  return <div className="App">{displayBlogs(blogPosts)}</div>;
 }
 
 export default App;
