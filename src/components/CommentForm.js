@@ -21,6 +21,8 @@ export default function CommentForm(props) {
     fetch(url, requestOptions)
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
+    setAuthor("");
+    setBody("");
   }
 
   return (
@@ -34,6 +36,7 @@ export default function CommentForm(props) {
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
       />
+      <br />
       <label>Comment: </label>
       <textarea
         placeholder="Comment away"
