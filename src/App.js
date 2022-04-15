@@ -1,4 +1,3 @@
-import "./App.css";
 import { useEffect, useState } from "react";
 import { DATABASE_URL } from "./urls.js";
 import { nanoid } from "nanoid";
@@ -9,7 +8,7 @@ function App() {
   const [blogPosts, setBlogPosts] = useState([{}]);
 
   useEffect(() => {
-    fetch(DATABASE_URL)
+    fetch(DATABASE_URL + "/blog")
       .then((response) => response.json())
       .then((data) =>
         setBlogPosts(() => {
