@@ -31,15 +31,18 @@ export default function BlogPost() {
   }, [id]);
 
   return (
-    <div>
+    <>
       <Header />
-      <h2>{blogPost.title}</h2>
-      <p>{blogPost.author}</p>
-      <p>{blogPost.body}</p>
-      <p>{blogPost.date}</p>
-      <p>{blogPost.tags}</p>
-      <Comments blogID={id} comments={comments} />
-      <CommentForm blogID={id} />
-    </div>
+      <main className={styles.container}>
+        <h1 className={styles.post__title}>{blogPost.title}</h1>
+        <p className={styles.post__author}>Written by: {blogPost.author}</p>
+        <p className={styles.post__date}>{blogPost.date}</p>
+        <p className={styles.post__body}>{blogPost.body}</p>
+        <p className={styles.post__tags}>{blogPost.tags}</p>
+        <hr></hr>
+        <Comments blogID={id} comments={comments} />
+        <CommentForm blogID={id} />
+      </main>
+    </>
   );
 }

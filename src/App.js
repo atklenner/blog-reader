@@ -24,7 +24,7 @@ function App() {
     <>
       <Header />
       {blogPosts && (
-        <div className={styles.container}>
+        <main className={styles.container}>
           {blogPosts.map((blog) => {
             return (
               <div key={blog._id} className={styles.blogPost}>
@@ -35,7 +35,7 @@ function App() {
               </div>
             );
           })}
-        </div>
+        </main>
       )}
     </>
   );
