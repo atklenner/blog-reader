@@ -1,3 +1,7 @@
+:root {
+  --max-width: 1000px;
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: whitesmoke;

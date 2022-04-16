@@ -4,6 +4,7 @@ import { DATABASE_URL } from "../urls";
 import CommentForm from "../components/CommentForm";
 import Comments from "../components/Comments";
 import Header from "../components/Header";
+import styles from "../styles/BlogPost.module.css";
 
 export default function BlogPost() {
   const [blogPost, setBlogPost] = useState([{}]);

@@ -1,0 +1,15 @@
+.container {
+  max-width: var(--max-width);
+  width: 80%;
+  margin: 0 auto;
+}
+
+.blogPost {
+  margin-bottom: 2em;
+}
+
+.postLink {
+  font-size: 2em;
+  text-decoration: none;
+  color: black;
+}

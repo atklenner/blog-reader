@@ -1,40 +1,43 @@
 import { useEffect, useState } from "react";
 import { DATABASE_URL } from "./urls.js";
-import { nanoid } from "nanoid";
 import Header from "./components/Header";
 import { Link } from "react-router-dom";
+import styles from "./styles/App.module.css";
 
 function App() {
-  const [blogPosts, setBlogPosts] = useState([{}]);
+  const [blogPosts, setBlogPosts] = useState([[]]);
 
   useEffect(() => {
-    fetch(DATABASE_URL + "/blog")
-      .then((response) => response.json())
-      .then((data) =>
-        setBlogPosts(() => {
-          return data;
-        })
-      );
+    async function getBlogPosts() {
+      try {
+        const res = await fetch(DATABASE_URL + "/blog");
+        const data = await res.json();
+        setBlogPosts(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getBlogPosts();
   }, []);
 
-  function displayBlogs(blogArray) {
-    if (blogArray) {
-      return blogArray.map((blog) => {
-        return (
-          <h2 key={nanoid()}>
-            <Link to={`/blog/${blog._id}`}>{blog.title}</Link>
-            <hr></hr>
-          </h2>
-        );
-      });
-    } else return "";
-  }
-
   return (
-    <div>
+    <>
       <Header />
-      {displayBlogs(blogPosts)}
-    </div>
+      {blogPosts && (
+        <div className={styles.container}>
+          {blogPosts.map((blog) => {
+            return (
+              <div key={blog._id} className={styles.blogPost}>
+                <Link to={`/blog/${blog._id}`} className={styles.postLink}>
+                  {blog.title}
+                </Link>
+                {/* <p>{blog.body.slice(0, 200)}</p> */}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 }
 
