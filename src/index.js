@@ -5,6 +5,7 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogPost from "./routes/BlogPost";
 import About from "./routes/About";
+import "./global.css";
 
 ReactDOM.render(
   <BrowserRouter>
