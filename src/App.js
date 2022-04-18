@@ -6,7 +6,7 @@ import styles from "./styles/App.module.css";
 import Footer from "./components/Footer.js";
 
 function App() {
-  const [blogPosts, setBlogPosts] = useState([[]]);
+  const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
     async function getBlogPosts() {
@@ -32,7 +32,7 @@ function App() {
                 <Link to={`/blog/${blog._id}`} className={styles.postLink}>
                   {blog.title}
                 </Link>
-                {/* <p>{blog.body.slice(0, 200)}</p> */}
+                <p>{blog.body.slice(0, 200)}</p>
               </div>
             );
           })}
