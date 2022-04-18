@@ -28,12 +28,12 @@ function App() {
         <main className={styles.container}>
           {blogPosts.map((blog) => {
             return (
-              <div key={blog._id} className={styles.blogPost}>
+              <article key={blog._id} className={styles.blogPost}>
                 <Link to={`/blog/${blog._id}`} className={styles.postLink}>
                   {blog.title}
                 </Link>
                 <p>{blog.body.slice(0, 200)}</p>
-              </div>
+              </article>
             );
           })}
         </main>

@@ -41,13 +41,15 @@ export default function BlogPost() {
     <>
       <Header />
       <main className={styles.container}>
-        <h1 className={styles.post__title}>{blogPost.title}</h1>
-        <p className={styles.post__author}>Written by: {blogPost.author}</p>
-        <p className={styles.post__date}>
-          {new Date(blogPost.date).toLocaleString()}
-        </p>
-        <p className={styles.post__body}>{blogPost.body}</p>
-        <p className={styles.post__tags}>{blogPost.tags}</p>
+        <article>
+          <h1 className={styles.post__title}>{blogPost.title}</h1>
+          <p className={styles.post__author}>Written by: {blogPost.author}</p>
+          <p className={styles.post__date}>
+            {new Date(blogPost.date).toLocaleString()}
+          </p>
+          <p className={styles.post__body}>{blogPost.body}</p>
+          <p className={styles.post__tags}>{blogPost.tags}</p>
+        </article>
         <hr></hr>
         <Comments blogID={id} comments={comments} />
         <CommentForm blogID={id} refresh={getComments} />
