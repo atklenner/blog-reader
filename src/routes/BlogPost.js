@@ -5,30 +5,12 @@ import CommentForm from "../components/CommentForm";
 import Comments from "../components/Comments";
 import Header from "../components/Header";
 import styles from "../styles/BlogPost.module.css";
+import Footer from "../components/Footer";
 
 export default function BlogPost() {
   const [blogPost, setBlogPost] = useState([{}]);
   const [comments, setComments] = useState([{}]);
   let { id } = useParams();
-
-  // useEffect(() => {
-  //   if (id) {
-  //     fetch(`${DATABASE_URL}/blog/${id}`)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setBlogPost(() => {
-  //           return data;
-  //         });
-  //       });
-  //     fetch(`${DATABASE_URL}/blog/${id}/comments`)
-  //       .then((response) => response.json())
-  //       .then((data) =>
-  //         setComments(() => {
-  //           return data;
-  //         })
-  //       );
-  //   }
-  // }, [id]);
 
   useEffect(() => {
     getBlogPost(id);
@@ -70,6 +52,7 @@ export default function BlogPost() {
         <Comments blogID={id} comments={comments} />
         <CommentForm blogID={id} refresh={getComments} />
       </main>
+      <Footer />
     </>
   );
 }

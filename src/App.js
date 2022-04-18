@@ -3,6 +3,7 @@ import { DATABASE_URL } from "./urls.js";
 import Header from "./components/Header";
 import { Link } from "react-router-dom";
 import styles from "./styles/App.module.css";
+import Footer from "./components/Footer.js";
 
 function App() {
   const [blogPosts, setBlogPosts] = useState([[]]);
@@ -37,6 +38,7 @@ function App() {
           })}
         </main>
       )}
+      <Footer />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import styles from "../styles/About.module.css";
 
@@ -14,6 +15,7 @@ export default function About() {
           </p>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
