@@ -8,8 +8,8 @@ import styles from "../styles/BlogPost.module.css";
 import Footer from "../components/Footer";
 
 export default function BlogPost() {
-  const [blogPost, setBlogPost] = useState([{}]);
-  const [comments, setComments] = useState([{}]);
+  const [blogPost, setBlogPost] = useState([]);
+  const [comments, setComments] = useState([]);
   let { id } = useParams();
 
   useEffect(() => {
