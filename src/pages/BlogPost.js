@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import { DATABASE_URL } from "../urls";
 import CommentForm from "../components/CommentForm";
 import Comments from "../components/Comments";
-import Header from "../components/Header";
 import styles from "../styles/BlogPost.module.css";
-import Footer from "../components/Footer";
 import ReactMarkdown from "react-markdown";
 
 export default function BlogPost() {
@@ -40,7 +38,6 @@ export default function BlogPost() {
 
   return (
     <>
-      <Header />
       <main className={styles.container}>
         <article>
           <h1 className={styles.post__title}>{blogPost.title}</h1>
@@ -48,7 +45,6 @@ export default function BlogPost() {
           <p className={styles.post__date}>
             {new Date(blogPost.date).toLocaleString()}
           </p>
-          {/* <p className={styles.post__body}>{blogPost.body}</p> */}
           <ReactMarkdown>{blogPost.body}</ReactMarkdown>
           <p className={styles.post__tags}>{blogPost.tags}</p>
         </article>
@@ -56,7 +52,6 @@ export default function BlogPost() {
         <Comments blogID={id} comments={comments} />
         <CommentForm blogID={id} refresh={getComments} />
       </main>
-      <Footer />
     </>
   );
 }
