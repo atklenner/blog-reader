@@ -20,8 +20,9 @@ export default function CommentForm(props) {
       body: JSON.stringify(comment),
     };
     fetch(url, requestOptions)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
+      // .then((response) => console.log(response))
+      .catch((err) => console.log(err))
+      .finally(() => props.refresh(props.blogID));
     setAuthor("");
     setBody("");
   }

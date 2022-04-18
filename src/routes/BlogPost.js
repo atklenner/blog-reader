@@ -11,24 +11,49 @@ export default function BlogPost() {
   const [comments, setComments] = useState([{}]);
   let { id } = useParams();
 
+  // useEffect(() => {
+  //   if (id) {
+  //     fetch(`${DATABASE_URL}/blog/${id}`)
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setBlogPost(() => {
+  //           return data;
+  //         });
+  //       });
+  //     fetch(`${DATABASE_URL}/blog/${id}/comments`)
+  //       .then((response) => response.json())
+  //       .then((data) =>
+  //         setComments(() => {
+  //           return data;
+  //         })
+  //       );
+  //   }
+  // }, [id]);
+
   useEffect(() => {
-    if (id) {
-      fetch(`${DATABASE_URL}/blog/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setBlogPost(() => {
-            return data;
-          });
-        });
-      fetch(`${DATABASE_URL}/blog/${id}/comments`)
-        .then((response) => response.json())
-        .then((data) =>
-          setComments(() => {
-            return data;
-          })
-        );
-    }
+    getBlogPost(id);
+    getComments(id);
   }, [id]);
+
+  async function getBlogPost(id) {
+    try {
+      const res = await fetch(`${DATABASE_URL}/blog/${id}`);
+      const data = await res.json();
+      setBlogPost(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function getComments(id) {
+    try {
+      const res = await fetch(`${DATABASE_URL}/blog/${id}/comments`);
+      const data = await res.json();
+      setComments(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
@@ -43,7 +68,7 @@ export default function BlogPost() {
         <p className={styles.post__tags}>{blogPost.tags}</p>
         <hr></hr>
         <Comments blogID={id} comments={comments} />
-        <CommentForm blogID={id} />
+        <CommentForm blogID={id} refresh={getComments} />
       </main>
     </>
   );
